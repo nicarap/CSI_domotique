@@ -1,0 +1,78 @@
+{% extends "base.html" %}{% load static %}
+{% block title %}<h2 class="row_title">Les lumières</h2>{% endblock %}
+{% block content %}
+<div class="contaier">
+
+	<div class="row">
+		<div class="col-sm-9">
+			<div class="row ">
+			{% regroup lum by piece as lumimere %}
+				<div class="col-sm-9 offset-sm-2">
+				{% for piece_name in lumimere %}
+						<div class="row border rounded row_title">
+							<div class="col-sm-9"><h3>{{piece_name.grouper}}({{piece_name.list|length}})</h3>
+							<!-- <a href="javascript:void(0);" style="font-size:15px;" class="disp_app_div btn btn-primary toggle-btn" onclick="cacheDiv()">&#9776;</a> -->
+							</div>
+							<div class="col-sm-2 offset-sm-1">	
+								<label class="switch">
+									<input type="checkbox" whatever='{{piece_name.grouper}}'>
+									<span class="slider round" id='toggle_lum' ></span>
+								</label>				
+							</div>
+						
+						</div>
+
+						<div class="row greyback">
+							{% for l in piece_name.list %}
+							<div class='clo-sm-2 border rounded greyback hover'>
+								<div class="div_lum {{piece_name.grouper}} " id="{{l.id}}" onclick="updateLum(this, '1', '{{l.id}}',-1)"> 
+				        			
+			<img class="img-lum" title={{l.name}} alt="" src='{% if l.etat %}{% static "maison_co/image/amp_on.png" %}{% else %}{% static "maison_co/image/amp_off.png" %}{% endif %}'>
+				        	
+				        		</div>
+				        		<p class="rounded center">{{l.name}}</p>
+				        	</div>
+				        	{% endfor %}
+				        	
+						</div>
+					<div class="row row_espace"></div>
+				{% endfor %}
+				</div>
+
+			</div>
+
+		</div>
+				
+		<div class="col-sm-2 div_config">
+			<div class="row border rounded greyback">
+				<div class="col-sm-12">
+					<div class="list-group">
+						<div class="row row_espace row_title"><p class="center">Configuration</p></div>
+					
+
+						<a class="btn btn-light btn_add border" href="./MyLum_on" role="button">Ajouter</a>
+						<a class="btn btn-light border lum_delete" href="#" role="button" onclick="select(this)">Selectionner</a>
+					
+
+						<div class="list-group btn_delete invisible">
+							<button type="button" class="btn btn-success" onclick="modif_lum(this)">Modifier</button>
+							<button type="button" class="btn btn-danger" onclick="DeleteMass()">Supprimer</button>
+						</div>
+						
+					</div>
+				</div>	
+			</div>
+	
+		</div>
+		<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+					<a class="dropdown-item" href="#">Action</a>
+				    <a class="dropdown-item" href="#">Another action</a>
+				    <a class="dropdown-item" href="#">Something else here</a>
+				</div>
+		<div><p class="etaat"></p></div>
+
+	</div>
+</div>
+
+{% endblock %}
+

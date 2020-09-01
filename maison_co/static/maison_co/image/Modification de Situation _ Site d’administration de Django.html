@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<!-- saved from url=(0055)http://localhost:8000/admin/COVID19/situation/4/change/ -->
+<html lang="fr"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Modification de Situation | Site d’administration de Django</title>
+<link rel="stylesheet" type="text/css" href="./Modification de Situation _ Site d’administration de Django_files/base.css">
+<link rel="stylesheet" type="text/css" href="./Modification de Situation _ Site d’administration de Django_files/forms.css">
+
+
+<script type="text/javascript" src="./Modification de Situation _ Site d’administration de Django_files/saved_resource"></script>
+<script type="text/javascript" src="./Modification de Situation _ Site d’administration de Django_files/jquery.js.téléchargement"></script>
+<script type="text/javascript" src="./Modification de Situation _ Site d’administration de Django_files/jquery.init.js.téléchargement"></script>
+<script type="text/javascript" src="./Modification de Situation _ Site d’administration de Django_files/core.js.téléchargement"></script>
+<script type="text/javascript" src="./Modification de Situation _ Site d’administration de Django_files/RelatedObjectLookups.js.téléchargement"></script>
+<script type="text/javascript" src="./Modification de Situation _ Site d’administration de Django_files/actions.js.téléchargement"></script>
+<script type="text/javascript" src="./Modification de Situation _ Site d’administration de Django_files/urlify.js.téléchargement"></script>
+<script type="text/javascript" src="./Modification de Situation _ Site d’administration de Django_files/prepopulate.js.téléchargement"></script>
+<script type="text/javascript" src="./Modification de Situation _ Site d’administration de Django_files/xregexp.js.téléchargement"></script>
+
+
+    <meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1.0, maximum-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="./Modification de Situation _ Site d’administration de Django_files/responsive.css">
+    
+
+<meta name="robots" content="NONE,NOARCHIVE">
+</head>
+
+
+<body class=" app-COVID19 model-situation change-form" data-admin-utc-offset="0">
+
+<!-- Container -->
+<div id="container">
+
+    
+    <!-- Header -->
+    <div id="header">
+        <div id="branding">
+        
+<h1 id="site-name"><a href="http://localhost:8000/admin/">Administration de Django</a></h1>
+
+        </div>
+        
+        
+        <div id="user-tools">
+            
+                Bienvenue,
+                <strong>nicar</strong>.
+            
+            
+                
+                    <a href="http://localhost:8000/">Voir le site</a> /
+                
+                
+                    
+                    
+                
+                
+                <a href="http://localhost:8000/admin/password_change/">Modifier le mot de passe</a> /
+                
+                <a href="http://localhost:8000/admin/logout/">Déconnexion</a>
+            
+        </div>
+        
+        
+        
+    </div>
+    <!-- END Header -->
+    
+<div class="breadcrumbs">
+<a href="http://localhost:8000/admin/">Accueil</a>
+› <a href="http://localhost:8000/admin/COVID19/">Covid19</a>
+› <a href="http://localhost:8000/admin/COVID19/situation/">Situations</a>
+› Fragile en Télétravail
+</div>
+
+    
+
+    
+        
+    
+
+    <!-- Content -->
+    <div id="content" class="colM">
+        
+        <h1>Modification de Situation</h1>
+        <div id="content-main">
+
+
+  <ul class="object-tools">
+    
+      
+
+<li>
+    
+    <a href="http://localhost:8000/admin/COVID19/situation/4/history/" class="historylink">Historique</a>
+</li>
+
+
+
+    
+  </ul>
+
+
+<form action="http://localhost:8000/admin/COVID19/situation/4/change/" method="post" id="situation_form" novalidate=""><input type="hidden" name="csrfmiddlewaretoken" value="UbZqx2H27WgzqW3UFLSKWKMLfQJkquuDsHvfhRLxZhzZctuJAlQMLljEZ1o7hLJM">
+<div>
+
+
+
+
+
+
+
+  <fieldset class="module aligned ">
+    
+    
+    
+        <div class="form-row field-situation">
+            
+            
+                <div>
+                    
+                    
+                        <label class="required" for="id_situation">Situation&nbsp;:</label>
+                        
+                            <input type="text" name="situation" value="Fragile en Télétravail" class="vTextField" maxlength="100" required="" id="id_situation">
+                        
+                    
+                    
+                </div>
+            
+        </div>
+    
+        <div class="form-row field-code">
+            
+            
+                <div>
+                    
+                    
+                        <label class="required" for="id_code">Code&nbsp;:</label>
+                        
+                            <input type="text" name="code" value="F-TTX" class="vTextField" maxlength="100" required="" id="id_code">
+                        
+                    
+                    
+                </div>
+            
+        </div>
+    
+        <div class="form-row field-etat">
+            
+            
+                <div>
+                    
+                    
+                        <label class="required" for="id_etat">Etat&nbsp;:</label>
+                        
+                            <select name="etat" id="id_etat">
+  <option value="PR" selected="">Présent</option>
+
+  <option value="ABS">Absent</option>
+
+</select>
+                        
+                    
+                    
+                </div>
+            
+        </div>
+    
+        <div class="form-row field-active">
+            
+            
+                <div class="checkbox-row">
+                    
+                    
+                        <input type="checkbox" name="active" id="id_active" checked=""><label class="vCheckboxLabel" for="id_active">Active</label>
+                    
+                    
+                </div>
+            
+        </div>
+    
+        <div class="form-row field-colonne">
+            
+            
+                <div>
+                    
+                    
+                        <label class="required" for="id_colonne">Nom de la colonne&nbsp;:</label>
+                        
+                            <input type="text" name="colonne" value="Fragile en Télétravail" class="vTextField" maxlength="100" required="" id="id_colonne">
+                        
+                    
+                    
+                </div>
+            
+        </div>
+    
+</fieldset>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="submit-row">
+
+<input type="submit" value="Enregistrer" class="default" name="_save">
+
+    
+    <p class="deletelink-box"><a href="http://localhost:8000/admin/COVID19/situation/4/delete/" class="deletelink">Supprimer</a></p>
+
+
+<input type="submit" value="Enregistrer et ajouter un nouveau" name="_addanother">
+<input type="submit" value="Enregistrer et continuer les modifications" name="_continue">
+
+
+</div>
+
+
+
+    <script type="text/javascript" id="django-admin-form-add-constants" src="./Modification de Situation _ Site d’administration de Django_files/change_form.js.téléchargement">
+    </script>
+
+
+
+
+<script type="text/javascript" id="django-admin-prepopulated-fields-constants" src="./Modification de Situation _ Site d’administration de Django_files/prepopulate_init.js.téléchargement" data-prepopulated-fields="[]">
+</script>
+
+
+</div>
+</form></div>
+
+        
+        <br class="clear">
+    </div>
+    <!-- END Content -->
+
+    <div id="footer"></div>
+</div>
+<!-- END Container -->
+
+
+
+</body></html>

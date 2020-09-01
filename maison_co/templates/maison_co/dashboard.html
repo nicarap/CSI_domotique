@@ -1,0 +1,246 @@
+{% extends "base.html" %}{% load static %}
+{% block title%}<h1>DomoHome</h1>{% endblock %}
+
+{% block content %}
+<div class="contaier">
+	{% regroup lum by piece as lumimere %}
+
+	<div class="row justify-content-start ligne1">
+
+		<div class="col-sm-4">
+			<div class="div_contain color-secondary borderrounded">
+				<a href="MyLum">
+					<div class="entete">
+						<img src="{% static 'maison_co/image/amp.png' %}" class="img-lum margintop" alt="...">
+						<p class="card-text inline">Les luminaires</p>
+					</div>
+				</a>
+				<div class="row_espace"></div>
+				<div class="container whitext">
+				{% for l in lum %}
+					<div class="row">
+						<div class="col-sm-7 lowC"> 
+		        			<p class="rounded center">{{l.name}}</p>
+		        		</div>
+		        		<div class="col-sm-3 lowC "> 
+		        			<p class="rounded center">{{l.piece.name}}</p>
+		        		</div>
+		        		<div class="col-sm-2" onclick="updateLum(this, '1', '{{l.id}}',-1)"> 
+		        			{% if l.etat == 0 %} 
+		        			
+					    	<img class="img-icone" alt="" src="{% static 'maison_co/image/amp_off.png' %}">
+					    	{% else %}
+					    	<img class="img-icone" alt="" src="{% static 'maison_co/image/amp_on.png' %}">
+					    	{% endif %}
+
+						
+		        		</div>
+	        		</div>
+				{% endfor %}
+				</div>
+			</div>
+     	</div>
+
+     	<div class="col-sm-3">
+			<div class="div_contain  color-secondary borderrounded">
+				<h1 class="text-center">{{date}}</h1>
+			</div>
+     	</div>
+
+     	<div class="col-sm-5">
+			<div class="div_contain  color-secondary borderrounded">
+				<a href="MyLum">
+					<div class="entete">
+						<img src="{% static 'maison_co/image/home.png' %}" class="margintop img-lum" alt="...">
+						<p class="card-text inline">Les pièces</p>
+					</div>
+				</a>
+				<div class="row_espace"></div>
+				<div class="container whitext borderrounded">
+
+
+					<table class="table">
+						<thead>
+							<tr>
+								<th scope="col">Pièces</th>
+								<th scope="col">Lumières</th>
+								<th scope="col">Prises</th>
+							</tr>
+						</thead>
+						<tbody>
+				{% for name, nb_elmt in t_lum.items %}
+					
+							<tr>
+								<td>{{name}}</td>
+								<td>{{nb_elmt.0}}</td>
+								<td>{{nb_elmt.1}}</td>
+							</tr>
+					<!-- 	</tbody>
+					</table>
+						<div class="row">
+							<div class="col-sm-4 lowC"> 
+			        			<p class="rounded center">{{name}}</p>
+			        		</div>
+			        		<div class="col-sm-3 lowC "> 
+			        				<p class="rounded center">{{nb_elmt}} Lumière{{nb_elmt|pluralize}}</p>
+			        	
+			        		</div>
+			        		<div class="col-sm-5 lowC "> 	
+			        		</div>
+			        		
+		        		</div> -->	
+				{% endfor %}
+					</tbody>
+					</table>
+				</div>
+			</div>
+     	</div>
+
+    </div>
+
+    <div class="row_espace" ></div>
+
+    <!-- <div class="row ligne1">
+     	<div class="col-sm-4">
+	    	<div class="div_contain color-secondary borderrounded">	    		
+	    		
+				<a href="#">
+					<div class="entete">
+				 		<img src="{% static 'maison_co/image/user.png' %}" class="margintop center card-img-top img-lum" alt="...">
+						<p class="card-text inline">Utilisateur{{user|length|pluralize}}</p>
+					</div>
+				</a>
+				<div class="container">
+					{% for u in user %}
+					<div class="row">
+						<div class="col-sm-8 lowC"> 
+		        			<p class="rounded center">{{u.name}} {{u.prenom}}</p>
+		        		</div>
+					
+					</div>
+					{% endfor %}
+				</div>
+			</div>
+		</div>
+     	<div class="col-sm-4">
+	    	<div class="div_contain color-secondary borderrounded">	    		
+	    		
+				<a href="#">
+					<div class="entete">
+				 		<!-- <img src="{% static 'maison_co/image/user.png' %}" class="margintop center card-img-top img-lum" alt="..."> 
+						<p class="card-text inline">Paramètre</p>
+					</div>
+				</a>
+				<div class="container">
+					
+				</div>
+			</div>
+		</div>
+     	<div class="col-sm-4">
+	    	<div class="div_contain color-secondary borderrounded">	    		
+	    		
+				<a href="#">
+					<div class="entete">
+				 		<!-- <img src="{% static 'maison_co/image/user.png' %}" class="margintop center card-img-top img-lum" alt="..."> 
+						<p class="card-text inline">Caméra</p>
+					</div>
+				</a>
+				<div class="container">
+
+				</div>
+			</div>
+		</div>
+	</div> -->
+</div>
+	<!-- <div class="row">
+		<div class="col-sm-12 ">
+			<div class="row ">
+				<div class="col-sm-10 offset-sm-1 ">
+				{% for p in piece %}
+					<div class="row row_title rounded">
+		        		<p class="">{{ p.name }}</p>
+		       		</div>
+		       		<div class="row greyback">
+		        	{% for l in lum %}
+		        		{% if l.piece.id == p.id %}
+						<div class="col-sm-2 border greyback rounded hover"><p class="center">{{ l.name }}</p></div>
+						{% else %}
+						
+		        		{% endif %}
+
+					{% empty %}
+						
+					{% endfor %}
+					</div>
+				<div class="row row_espace"></div>
+				{% empty %}
+				<p>Aucune pièce.</p>
+				{% endfor %}
+
+				</div>
+			</div>
+		</div>
+<div class="grid">
+
+		<div class="row row1">
+
+			<div class="grid-item col-md-3 border rounded hover">
+				<a href="./Mymaison" class="project-description">
+				<img class="img-responsive" alt="" src="{% static 'maison_co/image/maison.jpg' %}">
+			      
+			      	
+			        <div class="txt_div_theme">
+			        	<h3>Les pièces de chez moi. </h3>
+							
+			        </div>   
+			      </a>
+			</div>
+
+		    <div class="grid-item col-md-6  border rounded">
+		    	<h3 class="center date">{{ date }}</h3>
+		    </div>
+
+
+			<div class="grid-item col-md-3  border rounded hover" >
+				<a href="./MyLum" class="project-description">
+				<img class="img-responsive" alt="" src="{% static 'maison_co/image/amp_off.png' %}">
+			      
+			      	
+			        <div  class="txt_div_theme ">
+			        	<h3>Les lumières.</h3>
+			        	--><!--<div class="project-text-inner">
+			        		{% for p in piece %} 
+			        		<div class="col-sm-6">
+					        	<h3 class="center">{{ p.name }}</h3>
+								<p class="center">{{ p.surface}} km²</p>
+							</div>
+							{% empty %}
+							<p>Aucune pièce.</p>
+							{% endfor %}
+							
+			          	</div>--><!--
+							
+			        </div>   
+			    </a>  
+			</div>
+			
+		</div>
+
+
+
+		<div class="row row1">
+			
+			<div class="col-sm-3 border rounded hover fond_a"><p>A faire</p>
+			</div>
+			<div class="col-sm-3 fond_a border rounded hover">
+			</div>
+			<div class="col-sm-3 fond_a border rounded hover">
+			</div>
+			<div class="col-sm-3 fond_a border rounded hover">
+			</div>
+
+		</div>
+
+-->
+</div>
+{% endblock %}

@@ -1,0 +1,36 @@
+{% extends "base.html" %}{% load static %}
+{% block content %}
+
+<!-- <form method="POST" id="post-form">
+  {% csrf_token %}
+  <div class="form-group">
+    <label>Title</label>
+    <input type="text" class="form-control" id="title" placeholder="Title">
+  </div>
+   <div class="form-group">
+     <label>Description</label>
+     <textarea class="form-control" id="description" placeholder="Description"></textarea>
+   </div>
+   <button type="submit" class="btn btn-primary">Submit</button>
+</form> -->
+<div class="row">
+  
+</div>
+<div class="row">
+    <form method="post" action="">
+
+        {% csrf_token %}
+    <ul>
+        <h4 class="display-9 label label-success" >Ajouter une lumière connectée</h4><br>
+        <div class ="jumbotron">
+          
+          {{ form.as_p }}
+          <input type="submit" value="Valider" class="btn-info btn"/>
+        </div>
+    </ul>
+    
+  </form>
+</div>
+
+
+{% endblock %}

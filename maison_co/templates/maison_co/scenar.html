@@ -1,0 +1,68 @@
+{% extends "base.html" %}{% load static %}
+{% block content %}
+<div class="row_espace"></div>
+<div class="row">
+	<div class="col-sm-3"></div>
+	<div class="col-sm-6">
+
+		<form class="form borderrounded turkback">
+
+			<div class="form-row">
+				<label for="inputEmail4">Nom du scénario</label>
+				<input type="text" class="form-control" placeholder="Nom">
+			</div>
+
+			<div class="form-group">
+				<div class="row">
+					<div class="col-md-4">
+						<label for="inputState">Pièce</label>
+						<select id="inputState" class="form-control">
+							{% for p in piece %}
+							<option selected value="{{p.name}}">{{p.name}}</option>
+							{% endfor %}
+						</select>
+				    </div>
+				    <div class="col-md-8">
+				    	<div class="form-group">
+						    <div class="col-md-6">
+								<label for="inputState">Lumière</label>
+								<select id="inputState" class="form-control">
+									{% for l in lum %}
+									<option selected value="{{p.name}}">{{l.name}}</option>
+									{% endfor %}
+								</select>
+						    </div>
+						    <div class="col-md-6">
+								<label for="inputState">Prise</label>
+								<select id="inputState" class="form-control">
+									{% for pr in prise %}
+									<option selected value="{{p.name}}">{{pr.name}}</option>
+									{% endfor %}
+								</select>
+						    </div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="form-group">
+				<div class="row">
+					<div class="col-sm-6">
+						<label>Action</label>
+					    <input type="text" class="form-control" id="inputAddress" placeholder="1234 Main St">
+					</div>
+					<div class="col-sm-6">
+					    <label for="inputAddress2">Evènement</label>
+					    <input type="text" class="form-control" id="inputAddress2" placeholder="Apartment, studio, or floor">
+		  			</div>
+		  		</div>
+		  	</div>
+		  	<div class="row justify-content-start">
+				<div class="col-sm-2 offset-sm-9"><button type="submit" style="background-color: #186A3B;" class="btn">Enregistrer</button></div>
+			</div>
+		</form>
+
+	</div>
+	<div class="col-sm-3"></div>
+</div>
+{% endblock %}

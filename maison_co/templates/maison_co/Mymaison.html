@@ -1,0 +1,338 @@
+{% extends "base.html" %}{% load static %}
+{% block title %}
+
+<div class="row">
+	<div class="col-sm-8 offset-sm-2">
+		<h5 class="center">Il y a {{piece|length}} pièce{{piece|length|pluralize}} configurée{{piece|length|pluralize}}.</h5>
+	</div>
+	<div class="col-sm-2">
+		<a  href="./addRoom"><img src="{% static 'maison_co/image/add.png' %}" class="img-icone" alt="..."> </a>
+		<img src="{% static 'maison_co/image/select.png' %}" class="img-icone" alt="...">
+	</div>
+</div>
+
+{% endblock %}
+{% block content %}
+<div class="contaier">
+<!------------------------------------------------------------------------------------------->
+
+	<div class="row">
+		{% for p in piece %}
+		<div class="col-sm-5 marginleft margintop">
+			<div class="row row_title rounded">
+        		<div class="col-sm-8"><h4 class="">{{ p.name }}</h4></div>
+       		</div>
+       		<div class="row border rounded sunback">
+
+	       		<div class="col-sm-4 rounded">
+					<div class="card">
+       					<a class="badge badge-light" href="MyLum">
+					 	<img src="{% static 'maison_co/image/amp_on.png' %}" class="center card-img-top img-lum" alt="...">
+						<div class="card-body">
+							<p class="card-text">Les luminaires</p>
+						</div>
+						</a>
+						<div class="card-text">
+							<div class="list-group list-group-flush">
+								{% for l in lum %}
+								{% if l.piece.id == p.id %}
+							    <p class="list-group-item center border lowC hover width100" onclick="updateLum(this, '1', '{{l.id}}',-1)">{{ l.name }}
+							    	{% if l.etat == 0 %} 
+							    	<img class="img-icone" alt="" src="{% static 'maison_co/image/amp_off.png' %}">
+							    	{% else %}
+							    	<img class="img-icone" alt="" src="{% static 'maison_co/image/amp_on.png' %}">
+							    	{% endif %}</p>
+							    {% endif %}
+								{% endfor %}
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div class="col-sm-4 rounded ">
+	   				
+       				<div class="card">
+       					<a class="badge badge-light" href="MyLum">
+					 	<img src="{% static 'maison_co/image/prise.png' %}" class="center card-img-top img-lum" alt="...">
+						<div class="card-body">
+							<p class="card-text">Les Prises</p>
+						</div>
+						</a>
+						<div class="card">
+						<div class="list-group list-group-flush">
+							{% for pr in prise %}
+							{% if pr.piece.id == p.id %}
+						    <p class="list-group-item center border lowC hover width100">{{ pr.name }}
+						    	{% if pr.etat == 0 %} 
+						    	<img class="img-icone" alt="" src="{% static 'maison_co/image/off.png' %}">
+						    	{% else %}
+						    	<img class="img-icone" alt="" src="{% static 'maison_co/image/on.png' %}">
+						    	{% endif %}</p>
+						    {% endif %}
+							{% endfor %}
+						  </div>
+						</div>
+					</div>
+				</div>
+
+				<div class="col-sm-4 rounded">
+					<div class="card">
+       					<a class="badge badge-light" href="MyLum">
+					 	<img src="{% static 'maison_co/image/cam.png' %}" class="center card-img-top img-lum" alt="...">
+						<div class="card-body">
+							<p class="card-text">Les Caméras</p>
+						</div>
+						</a>
+						<div class="card">
+						<div class="list-group list-group-flush">
+							{% for c in cam %}
+							{% if c.piece.id == p.id %}
+						    <p class="list-group-item center border lowC hover width100">{{ c.name }}
+						    	{% if c.etat == 1 %} 
+						    	<img class="img-icone" alt="" src="{% static 'maison_co/image/rec.png' %}">
+						    	{% endif %}</p>
+						    {% endif %}
+							{% endfor %}
+						  </div>
+						</div>
+					</div>
+				</div>
+	
+			</div>
+
+		</div>
+	
+		{% endfor %}
+	</div>
+<!-----------------------------------------------------------------------------------------
+		<div class="col-sm-5">
+
+			<div class="row ">
+				<div class="col-sm-10 offset-sm-1 ">
+				{% for p in piece %}
+					<div class="row row_title rounded">
+		        		<div class="col-sm-9"><h3 class="">{{ p.name }}</h3></div>
+		        		
+		        		<div class="col-sm-1 offset-sm-2">
+		        			<button class="btn btn-light border" data-toggle="collapse" data-target="#{{ p.name }}">&#9776;</button>
+		        		</div>
+		       		</div>
+		       		<div class="row greyback border rounded" id="{{ p.name }}">
+		       			
+		       			<div class="border rounded col-sm-4" id="test">
+		       				<div class="card">
+		       					<a class="badge badge-light" href="MyLum">
+							 	<img src="{% static 'maison_co/image/amp_on.png' %}" class="center card-img-top img-lum" alt="...">
+								<div class="card-body">
+									<p class="card-text">Les luminaires</p>
+								</div>
+								</a>
+								<div class="card ">
+								<div class="list-group list-group-flush">
+									{% for l in lum %}
+									{% if l.piece.id == p.id %}
+								    <p class="list-group-item center border lowC hover width100" onclick="updateLum(this, '1', '{{l.id}}',-1)">{{ l.name }}
+								    	{% if l.etat == 0 %} 
+								    	<img class="img-icone" alt="" src="{% static 'maison_co/image/amp_off.png' %}">
+								    	{% else %}
+								    	<img class="img-icone" alt="" src="{% static 'maison_co/image/amp_on.png' %}">
+								    	{% endif %}</p>
+								    {% endif %}
+									{% endfor %}
+								</div>
+								</div>
+							</div>
+						</div>
+
+						<div class="border rounded col-sm-4 "><a class="badge badge-light " href="#">
+		       				<div class="card">
+							 	<img src="{% static 'maison_co/image/prise.png' %}" class="center card-img-top img-lum" alt="...">
+								<div class="card-body">
+									<p class="card-text">Les Prises</p>
+								</div>
+								<ul class="list-group list-group-flush">
+									{% for pr in prise %}
+									{% if pr.piece.id == p.id %}
+								    <li class="list-group-item">{{ pr.name }}
+								    	{% if pr.etat == 0 %} 
+								    	<img class="img-icone" alt="" src="{% static 'maison_co/image/off.png' %}">
+								    	{% else %}
+								    	<img class="img-icone" alt="" src="{% static 'maison_co/image/on.png' %}">
+								    	{% endif %}</li>
+								    {% endif %}
+									{% endfor %}
+								  </ul>
+							</div></a>
+						</div>
+							
+						<div class="border rounded col-sm-4 center"><a class="badge badge-light" href="#">
+		       				<div class="card">
+							 	<img src="{% static 'maison_co/image/cam.png' %}" class="center card-img-top img-lum" alt="...">
+								<div class="card-body">
+									<p class="card-text">Les Caméras</p>
+								</div>
+								<ul class="list-group list-group-flush">
+									{% for c in cam %}
+									{% if c.piece.id == p.id %}
+								    <li class="list-group-item">{{ c.name }}
+								    	{% if c.etat == 0 %} 
+								    	<img class="img-icone" alt="" src="{% static 'maison_co/image/rec.png' %}">
+								    	{% else %}
+								    	<img class="img-icone" alt="" src="{% static 'maison_co/image/rec.png' %}">
+								    	{% endif %}</li>
+								    {% endif %}
+									{% endfor %}
+								  </ul>
+							</div></a>
+						</div>
+
+					</div>
+				<div class="row row_espace"></div>
+				{% empty %}
+				<p>Aucune pièce.</p>
+				{% endfor %}
+
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-sm-2 div_config">
+			<div class="row border rounded greyback">
+				<div class="col-sm-12">
+					<div class="list-group">
+						<div class="row row_espace row_title"><p class="center">Configuration des pièces</p></div>
+					
+
+						<a class="btn btn-light btn_add border" href="#" role="button">Ajouter</a>
+						<a class="btn btn-light btn_modif border" href="#" role="button" id="bt_modif" onclick="modif_lum(this)">Modifier</a>
+						<a class="btn btn-light border lum_delete" href="#" role="button" onclick="select(this)">Selectionner</a>
+					
+
+						<div class="list-group btn_delete invisible">
+							<button type="button" class="btn btn-danger" onclick="DeleteMass()">Supprimer</button>
+						</div>
+					</div>
+				</div>	
+			</div>
+	
+		</div>
+		
+	</div>
+
+
+	<div class="row">
+
+		<div class="col-sm-9">
+			<div class="row ">
+				<div class="col-sm-9 offset-sm-2 ">
+				{% for p in piece %}
+					<div class="row row_title rounded">
+		        		<div class="col-sm-9"><h3 class="">{{ p.name }}</h3></div>
+		        		
+		        		<div class="col-sm-1 offset-sm-2">
+		        			<button class="btn btn-light border" data-toggle="collapse" data-target="#{{ p.name }}">&#9776;</button></div>
+		       			</div>
+		       		<div class="row greyback border rounded" id="{{ p.name }}">
+		       			
+		       			<div class="border rounded col-sm-4" id="test">
+		       				<div class="card">
+		       					<a class="badge badge-light" href="MyLum">
+							 	<img src="{% static 'maison_co/image/amp_on.png' %}" class="center card-img-top img-lum" alt="...">
+								<div class="card-body">
+									<p class="card-text">Les luminaires</p>
+								</div>
+								</a>
+								<div class="card ">
+								<div class="list-group list-group-flush">
+									{% for l in lum %}
+									{% if l.piece.id == p.id %}
+								    <p class="list-group-item center border lowC hover width100" onclick="updateLum(this, '1', '{{l.id}}',-1)">{{ l.name }}
+								    	{% if l.etat == 0 %} 
+								    	<img class="img-icone" alt="" src="{% static 'maison_co/image/amp_off.png' %}">
+								    	{% else %}
+								    	<img class="img-icone" alt="" src="{% static 'maison_co/image/amp_on.png' %}">
+								    	{% endif %}</p>
+								    {% endif %}
+									{% endfor %}
+								</div>
+								</div>
+							</div>
+						</div>
+
+						<div class="border rounded col-sm-4 "><a class="badge badge-light " href="#">
+		       				<div class="card">
+							 	<img src="{% static 'maison_co/image/prise.png' %}" class="center card-img-top img-lum" alt="...">
+								<div class="card-body">
+									<p class="card-text">Les Prises</p>
+								</div>
+								<ul class="list-group list-group-flush">
+									{% for pr in prise %}
+									{% if pr.piece.id == p.id %}
+								    <li class="list-group-item">{{ pr.name }}
+								    	{% if pr.etat == 0 %} 
+								    	<img class="img-icone" alt="" src="{% static 'maison_co/image/off.png' %}">
+								    	{% else %}
+								    	<img class="img-icone" alt="" src="{% static 'maison_co/image/on.png' %}">
+								    	{% endif %}</li>
+								    {% endif %}
+									{% endfor %}
+								  </ul>
+							</div></a>
+						</div>
+							
+						<div class="border rounded col-sm-4 center"><a class="badge badge-light" href="#">
+		       				<div class="card">
+							 	<img src="{% static 'maison_co/image/cam.png' %}" class="center card-img-top img-lum" alt="...">
+								<div class="card-body">
+									<p class="card-text">Les Caméras</p>
+								</div>
+								<ul class="list-group list-group-flush">
+									{% for c in cam %}
+									{% if c.piece.id == p.id %}
+								    <li class="list-group-item">{{ c.name }}
+								    	{% if c.etat == 0 %} 
+								    	<img class="img-icone" alt="" src="{% static 'maison_co/image/rec.png' %}">
+								    	{% else %}
+								    	<img class="img-icone" alt="" src="{% static 'maison_co/image/rec.png' %}">
+								    	{% endif %}</li>
+								    {% endif %}
+									{% endfor %}
+								  </ul>
+							</div></a>
+						</div>
+
+					</div>
+				<div class="row row_espace"></div>
+				{% empty %}
+				<p>Aucune pièce.</p>
+				{% endfor %}
+
+				</div>
+			</div>
+		</div>
+
+		<div class="col-sm-2 div_config">
+			<div class="row border rounded greyback">
+				<div class="col-sm-12">
+					<div class="list-group">
+						<div class="row row_espace row_title"><p class="center">Configuration des pièces</p></div>
+					
+
+						<a class="btn btn-light btn_add border" href="#" role="button">Ajouter</a>
+						<a class="btn btn-light btn_modif border" href="#" role="button" id="bt_modif" onclick="modif_lum(this)">Modifier</a>
+						<a class="btn btn-light border lum_delete" href="#" role="button" onclick="select(this)">Selectionner</a>
+					
+
+						<div class="list-group btn_delete invisible">
+							<button type="button" class="btn btn-danger" onclick="DeleteMass()">Supprimer</button>
+						</div>
+					</div>
+				</div>	
+			</div>
+	
+		</div>
+		
+	</div>-->
+</div>
+{% endblock %}

@@ -1,0 +1,132 @@
+<!-- {% load static %}
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- <link rel="stylesheet" href="{% static 'maison_co/css/bootstrap-grid.css' %}" /> -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+
+
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+    
+    <script src="{% static 'maison_co/js/rango-jquery.js' %}"></script>
+    <script src="{% static 'EXO/js/myScript.js' %}" type="text/JavaScript">
+     </script>
+     <script src="{% static 'maison_co/js/test.js' %}" type="text/JavaScript">
+     </script>
+    <!-- <link href="{% static 'maison_co/css/savori/main.82cfd66e.css' %}" rel="stylesheet"> -->
+    <link href="{% static 'maison_co/css/style.css' %}" rel="stylesheet">
+
+</head>
+
+<body>
+
+  <nav class="sidebar">
+    <div class="navbar-collapse" id="navbar-collapse">
+      <a href="{% url 'lum_create' %}" class="top-menu"><span class="glyphicon glyphicon-plus"></span></a>
+
+
+      <ul class="nav " id="myNavbar">
+        <li class="rounded "><a href="home" title=""><img src="{% static 'maison_co/image/dash.png' %}" class="img-menu" alt="..."></a></li>
+        <li class="rounded "><a href="./Mymaison" title=""><img src="{% static 'maison_co/image/home.png' %}" class="img-menu" alt="..."></a></li>
+        <li class="rounded "><a href="./MyLum" title=""><img src="{% static 'maison_co/image/amp.png' %}" class="img-menu" alt="..."></a></li>
+        <li class="rounded "><a href="/scenar" title=""><img src="{% static 'maison_co/image/prog.png' %}" class="img-menu" alt="..."></a></li>
+        <li class="rounded "><a href="javascript:void(0);" style="font-size:15px;" class="icon" onclick="myFunction()">&#9776;</a></li>
+      </ul>
+
+    </div> 
+  </nav>
+
+</header>
+
+<main class="" id="main-collapse">
+
+{% regroup exo by prog as prog_list %}
+<div class="hero-full-wrapper">
+  <div class="row row_titre">
+    <div class="col-sm-6">{% block title %}{% endblock %}</div>
+    <div class="col-sm-2 offset-sm-1" onclick="a();">Recherche ?</div>
+    <div class="col-sm-2 border rounded">User</div>
+
+  </div>
+  <div class="container blackborder">
+    {% for p in prog_list %}
+      {{ p.grouper }}
+    {% endfor %}
+  	<input class="form-control mb-4" id="tableSearch" type="text"
+    placeholder="Type something to search list items">
+    {{ user }}
+  	<table class="table table-bordered table-striped">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Nom</th>
+      <th scope="col">Prenom</th>
+      <th scope="col">Test</th>
+    </tr>
+  </thead>
+  <tbody id ="myTable">
+  	{% for b in exo %}
+    <tr>
+      <th scope="row">{{ b.id }}</th>
+      <td>{{ b.nom }}</td>
+      <td>{{ b.prenom }}</td>
+      <td>@{{ b.test }}</td>
+    </tr>
+	{% endfor %}
+  </tbody>
+</table>
+
+<a class="btn btn-success" data-toggle="modal" data-target="#exampleModal" href="./createEXO">Ajouter</a>
+
+  </div>
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form method="post" action="">
+
+            {% csrf_token %}
+            {{ form }}
+        <ul>
+            <h4 class="display-9 label label-success" >Ajouter un EXO</h4><br>
+            <div class ="jumbotron">
+              <!-- 
+              {{ form.as_p }} -->
+              <div class="fieldWrapper">
+                {{ form.prenom.errors }}
+              <label for="{{ form.prenom.id_for_label }}">Prenom:</label>
+              {{ form.prenom }}
+              {{ form.test.errors }}
+              <label for="{{ form.test.id_for_label }}">Test:</label>
+              {{ form.test }}
+              <input type="submit" value="Valider" class="btn-info btn"/>
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
+              </div>
+
+            </div>
+        </ul>
+    
+  </form>
+      <div class="modal-footer">
+        
+      </div>
+    </div>
+  </div>
+</div>
+
+</div>
+ -->
